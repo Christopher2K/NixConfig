@@ -20,7 +20,7 @@ in
         ripgrep
         scrcpy
         unzip
-        watchman
+        # watchman  # Temporarily disabled - folly fails with GCC 15.2.0
       ];
 
       home.file."${helpers.mkConfigPath config "/glow"}" = {
