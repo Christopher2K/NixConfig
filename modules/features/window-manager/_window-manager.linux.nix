@@ -208,6 +208,11 @@
           allow-when-locked = true;
           action.spawn-sh = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
         };
+        "Super+Meta+S" = {
+          allow-when-locked = false;
+          action.spawn-sh = "dms screenshot";
+
+        };
 
         # "XF86MonBrightnessUp" = {
         #   allow-when-locked = true;
