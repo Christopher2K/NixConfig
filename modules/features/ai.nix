@@ -6,10 +6,10 @@
   flake.modules.homeManager.ai =
     { pkgs, ... }:
     {
-      home.packages = with pkgs; [
-        opencode
-        codex
-        claude-code
+      home.packages = [
+        inputs.opencode.packages.${pkgs.stdenv.hostPlatform.system}.default
+        pkgs.codex
+        pkgs.claude-code
       ];
 
       home.file.".config/opencode" = {
