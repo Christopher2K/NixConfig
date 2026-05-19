@@ -33,6 +33,11 @@
         "@mobilenext/mobile-mcp@latest"
       ],
       "enabled": true
+    },
+    "notion": {
+      "enabled": true,
+      "type": "remote",
+      "url": "https://mcp.notion.com/mcp",
     }
   },
   "plugin": [],
