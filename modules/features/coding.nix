@@ -137,6 +137,7 @@ in
             user.name = "Christopher N. Katoyi Kaba";
             pull.rebase = true;
             init.defaultBranch = "main";
+            rerere.enabled = true;
           };
 
           includes = [
