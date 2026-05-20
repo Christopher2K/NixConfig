@@ -78,7 +78,7 @@ in
         };
 
         session = {
-          wallpaperPath = helpers.mkConfigPath config "/wallpapers/wallpaper-1.jpg";
+          wallpaperPath = "${config.home.homeDirectory}/.config/wallpapers/wallpaper-1.jpg";
         };
 
         clipboardSettings = {
