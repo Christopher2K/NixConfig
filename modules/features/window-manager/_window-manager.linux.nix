@@ -191,7 +191,7 @@
             "toggle"
           ];
         };
-        "Super+Alt+L" = {
+        "Mod+Alt+L" = {
           hotkey-overlay.title = "Lock the Screen: swaylock";
           action.spawn = "swaylock";
         };
@@ -208,7 +208,7 @@
           allow-when-locked = true;
           action.spawn-sh = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
         };
-        "Super+Meta+S" = {
+        "Shift+Mod+S" = {
           allow-when-locked = false;
           action.spawn-sh = "dms screenshot";
 
