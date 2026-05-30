@@ -1,6 +1,11 @@
 { inputs, config, ... }:
 let
   helpers = config.flake.helpers;
+  tailscaleConfig = {
+    services.tailscale = {
+      enable = true;
+    };
+  };
 in
 {
   flake.modules.nixos.security =
@@ -17,7 +22,8 @@ in
         enable = true;
         control = "sufficient";
       };
-    };
+    }
+    // tailscaleConfig;
 
   flake.modules.darwin.security = {
     security.pam.services.sudo_local = {
@@ -25,7 +31,8 @@ in
       reattach = true;
       touchIdAuth = true;
     };
-  };
+  }
+  // tailscaleConfig;
 
   flake.modules.homeManager.security = helpers.mkHybrid {
     common =
