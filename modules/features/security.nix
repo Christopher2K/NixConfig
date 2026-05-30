@@ -10,14 +10,12 @@ in
         enable = true;
         settings.core.device = "/dev/video2";
       };
+      security.pam.howdy.enable = false;
       security.pam.services.login.enableGnomeKeyring = true;
       services.gnome.gnome-keyring.enable = true;
       security.pam.services.sudo.howdy = {
         enable = true;
         control = "sufficient";
-      };
-      security.pam.services.polkit-1.howdy = {
-        enable = false;
       };
     };
 
