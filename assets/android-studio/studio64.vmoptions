@@ -1,28 +1,3 @@
--Xms256m
--Xmx2048m
--XX:JbrShrinkingGcMaxHeapFreeRatio=40
--XX:ReservedCodeCacheSize=512m
--XX:+HeapDumpOnOutOfMemoryError
--XX:-OmitStackTraceInFastThrow
--XX:CICompilerCount=2
--XX:+IgnoreUnrecognizedVMOptions
--XX:+UnlockDiagnosticVMOptions
--XX:TieredOldPercentage=100000
--ea
--Dsun.io.useCanonCaches=false
--Djbr.catch.SIGABRT=true
--Djdk.http.auth.tunneling.disabledSchemes=""
--Djdk.attach.allowAttachSelf=true
--Djdk.module.illegalAccess.silent=true
--Djdk.nio.maxCachedBufferSize=2097152
--Djava.util.zip.use.nio.for.zip.file.access=true
--Dkotlinx.coroutines.debug=off
--Djava.nio.file.spi.DefaultFileSystemProvider=com.intellij.platform.core.nio.fs.MultiRoutingFileSystemProvider
--Dsun.tools.attach.tmp.only=true
--Dawt.lock.fair=true
--Dflags.configuration.level=COMPLETE
--Dflags.debug.enabled=false
-
 # --- niri / Wayland: force JBR native Wayland AWT toolkit ---
 # JBR 21 ships an experimental Wayland toolkit that is off by default. Without
 # this, no window maps under niri (wlroots) and the IDE silently exits (130).

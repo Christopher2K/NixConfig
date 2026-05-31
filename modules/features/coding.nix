@@ -56,28 +56,51 @@ in
 
       programs.nix-ld.enable = true;
       programs.nix-ld.libraries = with pkgs; [
-        brotli
-        unixodbc
-        libGL
-        glib
-        stdenv.cc.cc
-        zlib
-        openssl
-        curl
-        bzip2
-        libffi
-        sqlite
-        readline
-        xz
-        libyaml
-        gdbm
-        ncurses
-        attr
         acl
+        alsa-lib
+        attr
+        at-spi2-core
+        brotli
+        bzip2
+        cairo
+        curl
+        cups
+        dbus
+        expat
+        gdbm
+        glib
+        gtk3
+        libGL
+        libffi
         libsodium
-        util-linux
+        libgbm
         libssh
         libxml2
+        libxkbcommon
+        libyaml
+        ncurses
+        nspr
+        nss
+        mesa
+        openssl
+        pango
+        readline
+        sqlite
+        stdenv.cc.cc
+        unixodbc
+        util-linux
+        xorg.libX11
+        xorg.libXcomposite
+        xorg.libXdamage
+        xorg.libXext
+        xorg.libXfixes
+        xorg.libXi
+        xorg.libXrandr
+        xorg.libXrender
+        xorg.libXtst
+        xorg.libxcb
+        xz
+        zlib
         zstd
       ];
 
