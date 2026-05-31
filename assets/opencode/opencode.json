@@ -40,7 +40,9 @@
       "url": "https://mcp.notion.com/mcp",
     }
   },
-  "plugin": [],
+  "plugin": [
+    "@mohak34/opencode-notifier@latest"
+  ],
   "provider": {
     "anthropic": {
       "options": {}
