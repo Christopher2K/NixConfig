@@ -56,6 +56,7 @@ in
     homebrew.brews = [
       "xcodegen"
       "libyaml"
+      "gh"
     ];
 
     homebrew.casks = [

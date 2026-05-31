@@ -59,10 +59,11 @@ in
 
         # Android
         ANDROID_ROOT = "$HOME/Library/Android";
-        ANDROID_SDK_ROOT = "$ANDROID_ROOT/sdk";
-        ANDROID_PLATFORM_TOOLS = "$ANDROID_SDK_ROOT/platform-tools";
-        ANDROID_HOME = "$ANDROID_SDK_ROOT";
-        PATH = "$PATH:$ANDROID_PLATFORM_TOOLS";
+        ANDROID_SDK_ROOT = "$HOME/Library/Android/sdk";
+        ANDROID_PLATFORM_TOOLS = "$HOME/Library/Android/sdk/platform-tools";
+        ANDROID_HOME = "$HOME/Library/Android/sdk";
+
+        PATH = "$PATH:$ANDROID_PLATFORM_TOOLS:$HOME/Library/Android/sdk/emulator";
 
         # Erlang
         ERL_AFLAGS = "-kernel shell_history enabled";
