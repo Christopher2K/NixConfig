@@ -13,6 +13,44 @@ in
 {
   flake.modules.nixos.coding =
     { pkgs, ... }:
+    let
+      # niri (Wayland/wlroots) + JBR 21: the IDE initializes fully but never
+      # maps a window, then exits with code 130 (SIGINT). JBR ships an
+      # experimental native Wayland AWT toolkit that must be opted into via the
+      # *_VM_OPTIONS file (see assets/android-studio/studio64.vmoptions). We
+      # point STUDIO_VM_OPTIONS at it so the toolkit flags apply regardless of
+      # the versioned per-user config dir.
+      studioVmOptions = helpers.mkAssetsPath "/android-studio/studio64.vmoptions";
+
+      # Primary launcher: force JBR native Wayland.
+      androidStudioWayland = pkgs.symlinkJoin {
+        name = "android-studio-wayland";
+        paths = [ pkgs.android-studio ];
+        nativeBuildInputs = [ pkgs.makeWrapper ];
+        postBuild = ''
+          wrapProgram $out/bin/android-studio \
+            --set STUDIO_VM_OPTIONS ${studioVmOptions} \
+            --set _JAVA_AWT_WM_NONREPARENTING 1
+        '';
+      };
+
+      # Fallback companion: route through the already-running xwayland-satellite.
+      # Use this to compare if niri still refuses to map the Wayland surface.
+      # Exposes only `android-studio-xwayland` (no collision with the primary
+      # `android-studio` binary) and forces the X11 AWT toolkit.
+      androidStudioXwayland =
+        pkgs.runCommand "android-studio-xwayland"
+          {
+            nativeBuildInputs = [ pkgs.makeWrapper ];
+          }
+          ''
+            mkdir -p $out/bin
+            makeWrapper ${pkgs.android-studio}/bin/android-studio $out/bin/android-studio-xwayland \
+              --set _JAVA_AWT_WM_NONREPARENTING 1 \
+              --set-default DISPLAY ":0" \
+              --add-flags "-Dawt.toolkit.name=XToolkit"
+          '';
+    in
     {
       nixpkgs.overlays = overlays;
 
@@ -44,8 +82,10 @@ in
       ];
 
       users.users.${username}.extraGroups = [ "kvm" ];
-      environment.systemPackages = with pkgs; [
-        jetbrains.idea
+      environment.systemPackages = [
+        pkgs.jetbrains.idea
+        androidStudioWayland
+        androidStudioXwayland
       ];
       nixpkgs.config.android_sdk.accept_license = true;
     };
