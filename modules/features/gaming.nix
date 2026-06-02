@@ -27,7 +27,11 @@
 
       programs.mangohud = {
         enable = true;
-        enableSessionWide = true;
+        # Session-wide injects MANGOHUD=1 and the MangoHud Vulkan layer into
+        # every app (including all GTK apps), adding first-launch overhead
+        # across the whole desktop. Enable per-game instead, e.g. the Steam
+        # launch option `mangohud %command%` or the `mangohud` wrapper.
+        enableSessionWide = false;
         settings = {
           legacy_layout = 0;
           background_alpha = 0.6;
