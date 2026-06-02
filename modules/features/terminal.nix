@@ -36,15 +36,46 @@ in
         };
       };
 
-      linux = {
-        home.sessionVariables = {
-          # Android
-          ANDROID_ROOT = "$HOME/Android";
-          ANDROID_SDK_ROOT = "$HOME/Android/Sdk";
-          ANDROID_PLATFORM_TOOLS = "$HOME/Android/Sdk/platform-tools";
-          ANDROID_HOME = "$HOME/Android/Sdk";
+      linux =
+        {
+          pkgs,
+          lib,
+          ...
+        }:
+        {
+          home.sessionVariables = {
+            # Android
+            ANDROID_ROOT = "$HOME/Android";
+            ANDROID_SDK_ROOT = "$HOME/Android/Sdk";
+            ANDROID_PLATFORM_TOOLS = "$HOME/Android/Sdk/platform-tools";
+            ANDROID_HOME = "$HOME/Android/Sdk";
+
+            # The manually-installed Android emulator (~/Android/Sdk/emulator) ships
+            # pre-built FHS binaries whose Qt "xcb" platform plugin dlopen()s X/xcb
+            # libraries that don't exist on NixOS. nix-ld doesn't help here because it
+            # only patches the ELF interpreter for executables, not runtime dlopen of
+            # Qt plugins. Expose the needed libraries via LD_LIBRARY_PATH so the
+            # emulator GUI can start. (Use `-gpu swiftshader_indirect` if hardware
+            # Vulkan rendering fails with VK_ERROR_INCOMPATIBLE_DRIVER.)
+            LD_LIBRARY_PATH = lib.makeLibraryPath (
+              with pkgs;
+              [
+                libxcb-cursor
+                libxcb-image
+                libxcb-keysyms
+                libxcb-render-util
+                libxcb-wm
+                libxkbcommon
+                libxcb
+                libx11
+                libxi
+                libxext
+                libice
+                libsm
+              ]
+            );
+          };
         };
-      };
 
       common =
         {
@@ -280,10 +311,10 @@ in
                   bind "Alt n" { NewPane; }
                   bind "Alt i" { MoveTab "Left"; }
                   bind "Alt o" { MoveTab "Right"; }
-                  bind "Alt h" "Alt Left" { MoveFocusOrTab "Left"; }
-                  bind "Alt l" "Alt Right" { MoveFocusOrTab "Right"; }
-                  bind "Alt j" "Alt Down" { MoveFocus "Down"; }
-                  bind "Alt k" "Alt Up" { MoveFocus "Up"; }
+                  bind "Alt h" { MoveFocusOrTab "Left"; }
+                  bind "Alt l" { MoveFocusOrTab "Right"; }
+                  bind "Alt j" { MoveFocus "Down"; }
+                  bind "Alt k" { MoveFocus "Up"; }
                   bind "Alt =" "Alt +" { Resize "Increase"; }
                   bind "Alt -" { Resize "Decrease"; }
                   bind "Alt [" { PreviousSwapLayout; }

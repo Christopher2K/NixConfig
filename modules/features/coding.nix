@@ -75,8 +75,13 @@ in
         libsodium
         libgbm
         libssh
+        libbsd
         libxml2
+        libxkbfile
+        libpng
+        libdrm
         libxkbcommon
+        libpulseaudio
         libyaml
         ncurses
         nspr
