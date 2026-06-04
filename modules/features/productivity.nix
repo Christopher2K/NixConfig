@@ -8,7 +8,7 @@
 
   flake.modules.darwin.productivity-cookunity = {
     homebrew.casks = [
-      "linear-linear"
+      "linear"
       "tuple"
       "notion"
     ];

@@ -9,7 +9,7 @@
         "npx",
         "-y",
         "chrome-devtools-mcp@latest",
-        "--executable-path=/etc/profiles/per-user/christopher/bin/chromium",
+        "--executable-path=/Users/christopher/Applications/Home Manager Apps/Helium.app/Contents/MacOS/Helium"
       ]
     },
     "lucid": {
@@ -37,7 +37,7 @@
     "notion": {
       "enabled": true,
       "type": "remote",
-      "url": "https://mcp.notion.com/mcp",
+      "url": "https://mcp.notion.com/mcp"
     }
   },
   "plugin": [
