@@ -114,6 +114,7 @@ in
         pkgs.jetbrains.idea
         androidStudioWayland
         androidStudioXwayland
+        pkgs.miktex
       ];
       nixpkgs.config.android_sdk.accept_license = true;
     };
