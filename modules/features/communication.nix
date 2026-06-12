@@ -8,6 +8,7 @@
       "whatsapp"
       "signal"
       "slack"
+      "insta360-link-controller"
     ];
   };
 
