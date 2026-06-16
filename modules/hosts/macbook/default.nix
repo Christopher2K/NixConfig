@@ -14,6 +14,7 @@ in
       darwin.coding
       darwin.communication
       darwin.design
+      darwin."3d-design"
       darwin.desktop-shell
       darwin.homebrew
       darwin.launcher

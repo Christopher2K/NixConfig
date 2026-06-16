@@ -6,4 +6,11 @@
       "cap"
     ];
   };
+
+  flake.modules.darwin."3d-design" = {
+    homebrew.casks = [
+      "bambu-studio"
+      "bambu-connect"
+    ];
+  };
 }

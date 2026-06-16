@@ -9,6 +9,7 @@
       "signal"
       "slack"
       "insta360-link-controller"
+      "zoom"
     ];
   };
 
