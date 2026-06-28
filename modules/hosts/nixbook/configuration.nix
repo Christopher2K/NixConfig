@@ -54,6 +54,7 @@ in
         accountsservice
         appimage-run
         asusctl
+        lm_sensors
         libgcc
         gcc
         gnumake
@@ -73,7 +74,9 @@ in
 
       programs.nix-ld.enable = true;
 
-      services.power-profiles-daemon.enable = true;
+      # power-profiles-daemon conflicts with asusd on ASUS laptops,
+      # both fight over /sys/firmware/acpi/platform_profile.
+      services.power-profiles-daemon.enable = false;
       services.upower.enable = true;
 
       services.supergfxd.enable = true;
