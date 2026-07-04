@@ -11,6 +11,7 @@ in
       ];
 
       boot.loader.systemd-boot.enable = true;
+      boot.loader.systemd-boot.configurationLimit = 5;
       boot.loader.efi.canTouchEfiVariables = true;
 
       networking.hostName = "nixbook";
@@ -49,6 +50,9 @@ in
           "christopher"
         ];
       };
+
+      nix.gc.automatic = true;
+      nix.gc.options = "--delete-older-than 7d";
 
       environment.systemPackages = with pkgs; [
         accountsservice
