@@ -67,6 +67,8 @@
     matugen.url = "github:/InioX/Matugen";
 
     proton-cachyos.url = "github:powerofthe69/proton-cachyos-nix";
+
+    herdr.url = "github:ogulcancelik/herdr";
   };
 
   outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);

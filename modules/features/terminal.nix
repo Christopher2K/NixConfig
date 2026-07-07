@@ -5,6 +5,7 @@ let
   overlays = [
     (final: prev: {
       zjstatus = inputs.zjstatus.packages.${prev.stdenv.hostPlatform.system}.default;
+      herdr = inputs.herdr.packages.${prev.stdenv.hostPlatform.system}.default;
     })
   ];
 in
@@ -87,6 +88,7 @@ in
         {
           home.packages = with pkgs; [
             zjstatus
+            herdr
           ];
 
           home.file."${helpers.mkHomePath config "/Scripts"}" = {
@@ -97,6 +99,12 @@ in
 
           home.file."${helpers.mkConfigPath config "/.env.template"}" = {
             source = helpers.mkAssetsPath "/env.template";
+            force = true;
+          };
+
+          home.file."${helpers.mkConfigPath config "/herdr"}" = {
+            source = helpers.mkAssetsPath "/herdr";
+            recursive = true;
             force = true;
           };
 
