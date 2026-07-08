@@ -40,7 +40,7 @@ in
     };
 
     system.defaults = {
-      spaces.spans-displays = true;
+      spaces.spans-displays = false;
       dock.expose-group-apps = true; # For aerospace
       SoftwareUpdate.AutomaticallyInstallMacOSUpdates = false;
       dock = {
