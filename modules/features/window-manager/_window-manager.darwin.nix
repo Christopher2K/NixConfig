@@ -8,9 +8,9 @@
   };
 
   programs.aerospace = {
-    enable = true;
-    launchd.enable = true;
-    launchd.keepAlive = true;
+    enable = false;
+    launchd.enable = false;
+    launchd.keepAlive = false;
 
     settings = {
       after-startup-command = [ "layout accordion" ];

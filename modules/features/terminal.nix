@@ -34,49 +34,9 @@ in
           ANDROID_SDK_ROOT = "$HOME/Library/Android/sdk";
           ANDROID_PLATFORM_TOOLS = "$HOME/Library/Android/sdk/platform-tools";
           ANDROID_HOME = "$HOME/Library/Android/sdk";
+          PATH = "$PATH:$ANDROID_PLATFORM_TOOLS:$HOME/Library/Android/sdk/emulator";
         };
       };
-
-      linux =
-        {
-          pkgs,
-          lib,
-          ...
-        }:
-        {
-          home.sessionVariables = {
-            # Android
-            ANDROID_ROOT = "$HOME/Android";
-            ANDROID_SDK_ROOT = "$HOME/Android/Sdk";
-            ANDROID_PLATFORM_TOOLS = "$HOME/Android/Sdk/platform-tools";
-            ANDROID_HOME = "$HOME/Android/Sdk";
-
-            # The manually-installed Android emulator (~/Android/Sdk/emulator) ships
-            # pre-built FHS binaries whose Qt "xcb" platform plugin dlopen()s X/xcb
-            # libraries that don't exist on NixOS. nix-ld doesn't help here because it
-            # only patches the ELF interpreter for executables, not runtime dlopen of
-            # Qt plugins. Expose the needed libraries via LD_LIBRARY_PATH so the
-            # emulator GUI can start. (Use `-gpu swiftshader_indirect` if hardware
-            # Vulkan rendering fails with VK_ERROR_INCOMPATIBLE_DRIVER.)
-            LD_LIBRARY_PATH = lib.makeLibraryPath (
-              with pkgs;
-              [
-                libxcb-cursor
-                libxcb-image
-                libxcb-keysyms
-                libxcb-render-util
-                libxcb-wm
-                libxkbcommon
-                libxcb
-                libx11
-                libxi
-                libxext
-                libice
-                libsm
-              ]
-            );
-          };
-        };
 
       common =
         {
@@ -118,7 +78,6 @@ in
             SSH_AUTH_SOCK = "$HOME/.ssh/proton-pass-agent.sock";
 
             SHELL_SESSIONS_DISABLE = 1;
-            PATH = "$PATH:$ANDROID_PLATFORM_TOOLS:$HOME/Library/Android/sdk/emulator";
 
             # Erlang
             ERL_AFLAGS = "-kernel shell_history enabled";
