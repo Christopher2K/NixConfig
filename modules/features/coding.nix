@@ -3,7 +3,7 @@ let
   username = config.flake.username;
   helpers = config.flake.helpers;
   overlays = [
-    inputs.neovim-nightly-overlay.overlays.default
+    # inputs.neovim-nightly-overlay.overlays.default
     inputs.devenv.overlays.default
     (final: prev: {
       sqlit = inputs.sqlit.packages.${prev.stdenv.hostPlatform.system}.default;
@@ -120,7 +120,7 @@ in
 
         programs.neovim = {
           enable = true;
-          package = pkgs.neovim;
+          package = pkgs.neovim-unwrapped;
           defaultEditor = true;
           viAlias = true;
           vimAlias = true;
