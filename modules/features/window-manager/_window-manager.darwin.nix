@@ -1,12 +1,6 @@
 { inputs, helpers }:
 { pkgs, config, ... }:
 {
-
-  home.file."${helpers.mkConfigPath config "/omniwm/settings.json"}" = {
-    source = helpers.mkAssetsPath "/omniwm-settings.json";
-    force = true;
-  };
-
   programs.aerospace = {
     enable = true;
     launchd.enable = true;

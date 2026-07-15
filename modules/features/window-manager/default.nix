@@ -33,7 +33,6 @@ in
   flake.modules.darwin.window-manager =
     { ... }:
     {
-      # homebrew.casks = [ "omniwm" ];
     };
 
   flake.modules.homeManager.window-manager = helpers.mkHybrid {
