@@ -4,7 +4,10 @@ local keys = {}
 --
 function keys.set_terminal_keymaps()
   local opts = { buffer = 0 }
-  vim.keymap.set('t', 'jk', [[<C-\><C-n>]], opts)
+  -- Use Ctrl-\ Ctrl-n to exit terminal mode instead of jk to avoid j-key delay
+  vim.keymap.set('t', '<C-\\><C-n>', [[<C-\><C-n>]], opts)
+  -- Toggle (hide) the snacks terminal with Ctrl-\
+  vim.keymap.set('t', '<C-\\>', function() Snacks.terminal.toggle() end, opts)
   vim.keymap.set('t', '<C-h>', [[<Cmd>wincmd h<CR>]], opts)
   vim.keymap.set('t', '<C-j>', [[<Cmd>wincmd j<CR>]], opts)
   vim.keymap.set('t', '<C-k>', [[<Cmd>wincmd k<CR>]], opts)
@@ -78,38 +81,20 @@ function keys.init()
   vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "Check references" })
 
   -- Plugins stuff
-  vim.keymap.set("n", "<leader>e", "<cmd>Neotree reveal<cr>", { desc = "Open or focus explorer" })
-  vim.keymap.set("n", "<leader>b", "<cmd>Neotree close<cr>", { desc = "Close explorer" })
+  vim.keymap.set("n", "<leader>e", function() Snacks.explorer.reveal() end, { desc = "Open or focus explorer" })
+  vim.keymap.set("n", "<leader>b", function() Snacks.picker.buffers() end, { desc = "Pick buffer" })
 
-  vim.keymap.set("n", "<leader>gg", "<cmd>LazyGit<cr>", { desc = "Open LazyGit" })
+  vim.keymap.set("n", "<leader>gg", function() Snacks.lazygit() end, { desc = "Open LazyGit" })
   vim.keymap.set("n", "<leader>i", "<cmd>Sleuth<cr>", { desc = "Fix indentiation" })
 
   -- File picker
-  local pick = require("mini.pick")
+  vim.keymap.set("n", "<leader>ff", function() Snacks.picker.files() end, { desc = "Pick file" })
+  vim.keymap.set("n", "<leader>fg", function() Snacks.picker.grep() end, { desc = "Pick live grep" })
 
-  vim.keymap.set("n", "<leader>ff",
-    function()
-      return pick.builtin.files({})
-    end,
-    { desc = "Pick file" }
-  )
-  vim.keymap.set("n", "<leader>fb",
-    function()
-      pick.builtin.buffers({})
-    end,
-    { desc = "Pick buffer" }
-  )
-  vim.keymap.set("n", "<leader>fg",
-    function()
-      pick.builtin.grep_live({})
-    end,
-    { desc = "Pick live grep" }
-  )
-  vim.keymap.set('n', '<leader>fw', '<cmd>Pick git_worktrees<cr>')
-
-  -- OpenCode Terminal (ToggleTerm)
+  -- OpenCode Terminal (Snacks)
   if not vim.g.vscode then
     vim.keymap.set({ "n", "t" }, "<C-x>", fns.toggle_opencode_terminal, { desc = "Toggle OpenCode terminal" })
+    vim.keymap.set("n", "<C-\\>", fns.toggle_terminal, { desc = "Toggle terminal" })
   end
 end
 

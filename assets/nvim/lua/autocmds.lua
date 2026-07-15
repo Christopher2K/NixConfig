@@ -28,9 +28,9 @@ function autocmds.init()
     end,
   })
 
-  vim.api.nvim_create_autocmd('TermOpen', {
-    pattern = "term://*toggleterm#*",
-    callback = keymaps.set_terminal_keymaps
+  vim.api.nvim_create_autocmd("FileType", {
+    pattern = "snacks_terminal",
+    callback = keymaps.set_terminal_keymaps,
   })
 
   vim.api.nvim_create_autocmd('FileType', {

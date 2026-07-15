@@ -21,23 +21,16 @@ end
 function plugins.init()
   plugins.add({
     -- Global dependencies
-    "muniftanjim/nui.nvim",                                                    -- UI library
     -- "folke/noice.nvim",                                                        -- UI library as well
     "folke/snacks.nvim",                                                       -- UI library as well
-    "rcarriga/nvim-notify",                                                    -- Notifications
     "nvim-lua/plenary.nvim",                                                   -- Utilities
     "laytan/cloak.nvim",                                                       -- Cloak for streaming
 
     "ellisonleao/gruvbox.nvim",                                                -- Theme
     "nvim-tree/nvim-web-devicons",                                             -- Icons
-    { src = "nvim-neo-tree/neo-tree.nvim", version = vim.version.range('3') }, -- File explorer
-    { src = "nvim-mini/mini.pick",         version = "stable" },               -- File picker plugin
     "stevearc/conform.nvim",                                                   -- Format plugin
     "Bekaboo/dropbar.nvim",                                                    -- Breadcrumbs plugin
-    "numToStr/FTerm.nvim",                                                     -- Terminal plugin
-    "akinsho/toggleterm.nvim",                                                 -- Another terminal plugin
     "lewis6991/gitsigns.nvim",                                                 -- Git signs plugin
-    "kdheepak/lazygit.nvim",                                                   -- LazyGit plugin
 
     "supermaven-inc/supermaven-nvim",                                          -- AI Completion plugin
     "neovim/nvim-lspconfig",                                                   -- LSP base configurations
@@ -54,7 +47,6 @@ function plugins.init()
     { src = "echasnovski/mini.surround", version = "main" },                   -- Symbol surround plugin
     "tpope/vim-sleuth",                                                        -- Auto indent detection
     "nvim-pack/nvim-spectre",                                                  -- Search and replace
-    "arnamak/stay-centered.nvim",                                              -- Centered mode
     { src = "nvim-treesitter/nvim-treesitter", version = "main" },             -- Treesitter
     "windwp/nvim-ts-autotag",                                                  -- Treesitter extension for auto-tag
     "wakatime/vim-wakatime",                                                   -- WakaTime
@@ -94,34 +86,6 @@ function plugins.configure()
       },
     },
   })
-
-  --#region Neotree
-  local neotree = require("neo-tree")
-  neotree.setup({
-    enable_diagnostics = false,
-    enable_git_status = false,
-    filesystem = {
-      follow_current_file = {
-        enabled = true,
-        leave_dirs_open = false,
-      },
-    },
-    window = {
-      position = "float",
-    },
-    default_component_configs = {
-      file_size = {
-        enabled = false,
-      },
-      created = {
-        enabled = false,
-      },
-      symlink_target = {
-        enabled = true
-      },
-    },
-  })
-  --#endregion
 
   --#region Lualine
   local lualine = require("lualine")
@@ -186,38 +150,42 @@ function plugins.configure()
   --#endregion
 
   --#region UI stuff
-  -- local noice = require("noice")
-  -- local notify = require("notify")
-  local stay_centered = require("stay-centered")
   local snacks = require("snacks")
   local cloak = require("cloak")
-
-  -- noice.setup({
-  --   presets = {
-  --     bottom_search = true,         -- use a classic bottom cmdline for search
-  --     command_palette = true,       -- position the cmdline and popupmenu together
-  --     long_message_to_split = true, -- long messages will be sent to a split
-  --     inc_rename = false,           -- enables an input dialog for inc-rename.nvim
-  --     lsp_doc_border = true,        -- add a border to hover docs and signature help
-  --   },
-  -- })
-
-  -- notify.setup({
-  --   background_colour = "#000000",
-  --   stages = "fade_in_slide_out",
-  --   timeout = 3000,
-  --   render = "compact",
-  --   top_down = false,
-  -- })
-
-  stay_centered.setup({
-    enabled = false
-  })
 
   snacks.setup({
     input = { enabled = true },
     terminal = { enabled = true },
     picker = { enabled = true },
+    notifier = { enabled = true },
+    lazygit = { enabled = true },
+    explorer = {
+      enabled = true,
+      replace_netrw = true,
+      layout = { preset = "default", preview = false },
+    },
+
+    dashboard = {
+      enabled = true,
+      preset = {
+        header = "Neovim :: by LLCoolChris",
+        keys = {},
+      },
+      sections = {
+        { section = "header" },
+      },
+    },
+
+    styles = {
+      dashboard = {
+        wo = {
+          fillchars = "eob: ",
+        },
+      },
+      terminal = {
+        border = "rounded",
+      },
+    },
   })
 
   cloak.setup()
@@ -233,8 +201,6 @@ function plugins.configure()
     },
     ignore_filetypes = {
       TelescopePrompt = true,
-      FTerm = true,
-      ['neo-tree'] = true,
     },
   })
   --#endregion
@@ -253,34 +219,6 @@ function plugins.configure()
       },
     },
   })
-
-  local pick = require("mini.pick")
-  local worktree_picker = require("worktree_picker")
-  pick.setup()
-
-  pick.registry.git_worktrees = function(local_opts)
-    local cwd = local_opts.cwd or vim.fn.getcwd()
-    if vim.system({ 'git', '-C', cwd, 'rev-parse' }):wait().code ~= 0 then
-      vim.notify(
-        'Not in a git repository',
-        vim.log.levels.ERROR
-      )
-      return
-    end
-    local opts = {
-      source = {
-        -- NOTE: Window Title
-        name = string.format('Git Worktrees - %s', cwd),
-        choose = worktree_picker.wt_switch,
-      },
-    }
-    local_opts.command =
-    { 'git', '-C', cwd, 'worktree', 'list', '--porcelain', '-z' }
-    local_opts.postprocess = worktree_picker.wt_postprocess
-
-    return pick.builtin.cli(local_opts, opts)
-  end
-
 
   --#endregion
 
@@ -359,13 +297,6 @@ function plugins.configure()
   })
   --#endregion
 
-  --#region toggleterm
-  local toggleterm = require("toggleterm")
-  toggleterm.setup({
-    open_mapping = [[<c-\>]],
-    shade_terminals = false,
-  })
-  --#endregion
 end
 
 return plugins
