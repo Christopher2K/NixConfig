@@ -67,7 +67,7 @@ in
         };
 
         # Common stylix targets
-        stylix.targets.ghostty.enable = true;
+        stylix.targets.kitty.enable = true;
         stylix.targets.fontconfig.enable = true;
         stylix.targets.starship.enable = true;
         stylix.targets.vesktop.enable = true;

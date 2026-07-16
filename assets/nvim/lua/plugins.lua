@@ -21,38 +21,38 @@ end
 function plugins.init()
   plugins.add({
     -- Global dependencies
-    -- "folke/noice.nvim",                                                        -- UI library as well
-    "folke/snacks.nvim",                                                       -- UI library as well
-    "nvim-lua/plenary.nvim",                                                   -- Utilities
-    "laytan/cloak.nvim",                                                       -- Cloak for streaming
+    "folke/snacks.nvim",                                                   -- UI library as well
+    "nvim-lua/plenary.nvim",                                               -- Utilities
+    "laytan/cloak.nvim",                                                   -- Cloak for streaming
 
-    "ellisonleao/gruvbox.nvim",                                                -- Theme
-    "nvim-tree/nvim-web-devicons",                                             -- Icons
-    "stevearc/conform.nvim",                                                   -- Format plugin
-    "Bekaboo/dropbar.nvim",                                                    -- Breadcrumbs plugin
-    "lewis6991/gitsigns.nvim",                                                 -- Git signs plugin
+    "ellisonleao/gruvbox.nvim",                                            -- Theme
+    "nvim-tree/nvim-web-devicons",                                         -- Icons
+    "stevearc/conform.nvim",                                               -- Format plugin
+    "Bekaboo/dropbar.nvim",                                                -- Breadcrumbs plugin
+    "lewis6991/gitsigns.nvim",                                             -- Git signs plugin
 
-    "supermaven-inc/supermaven-nvim",                                          -- AI Completion plugin
-    "neovim/nvim-lspconfig",                                                   -- LSP base configurations
-    "williamboman/mason.nvim",                                                 -- LSP / Tools Installer
-    "elixir-tools/elixir-tools.nvim",                                          -- Elixir LSP & Tools
-    "williamboman/mason-lspconfig.nvim",                                       -- Helper for mason
-    { src = "saghen/blink.cmp",        version = vim.version.range("*") },     -- LSP completion plugin
-    { src = 'akinsho/bufferline.nvim', version = vim.version.range("*") },     -- Bufferline
+    "supermaven-inc/supermaven-nvim",                                      -- AI Completion plugin
+    "neovim/nvim-lspconfig",                                               -- LSP base configurations
+    "williamboman/mason.nvim",                                             -- LSP / Tools Installer
+    "elixir-tools/elixir-tools.nvim",                                      -- Elixir LSP & Tools
+    "williamboman/mason-lspconfig.nvim",                                   -- Helper for mason
+    { src = "saghen/blink.cmp",        version = vim.version.range("*") }, -- LSP completion plugin
+    { src = 'akinsho/bufferline.nvim', version = vim.version.range("*") }, -- Bufferline
 
-    "nvim-lualine/lualine.nvim",                                               -- Status line plugin
-    { src = "echasnovski/mini.comment",  version = "main" },                   -- Comment plugin
+    "nvim-lualine/lualine.nvim",                                           -- Status line plugin
+    { src = "echasnovski/mini.comment",  version = "main" },               -- Comment plugin
     -- "JoosepAlviste/nvim-ts-context-commentstring",                             -- Contextual commentstring
-    { src = "echasnovski/mini.pairs",    version = "main" },                   -- Autopairs plugin
-    { src = "echasnovski/mini.surround", version = "main" },                   -- Symbol surround plugin
-    "tpope/vim-sleuth",                                                        -- Auto indent detection
-    "nvim-pack/nvim-spectre",                                                  -- Search and replace
-    { src = "nvim-treesitter/nvim-treesitter", version = "main" },             -- Treesitter
-    "windwp/nvim-ts-autotag",                                                  -- Treesitter extension for auto-tag
-    "wakatime/vim-wakatime",                                                   -- WakaTime
-    "folke/which-key.nvim",                                                    -- Bindings helpers
-    "OXY2DEV/markview.nvim",                                                   -- Markdown viewers
-    "lervag/vimtex"
+    { src = "echasnovski/mini.pairs",    version = "main" },               -- Autopairs plugin
+    { src = "echasnovski/mini.surround", version = "main" },               -- Symbol surround plugin
+    "tpope/vim-sleuth",                                                    -- Auto indent detection
+    "nvim-pack/nvim-spectre",                                              -- Search and replace
+    { src = "nvim-treesitter/nvim-treesitter", version = "main" },         -- Treesitter
+    "windwp/nvim-ts-autotag",                                              -- Treesitter extension for auto-tag
+    "wakatime/vim-wakatime",                                               -- WakaTime
+    "folke/which-key.nvim",                                                -- Bindings helpers
+    "OXY2DEV/markview.nvim",                                               -- Markdown viewers
+    "lervag/vimtex",
+    "kevalin/mermaid.nvim"                                                 -- Mermaid diagrams
   })
 end
 
@@ -139,14 +139,7 @@ function plugins.configure()
     "zig",
   })
   local comments = require("mini.comment")
-  -- local commentstring = require("ts_context_commentstring")
-  comments.setup({
-    options = {
-      -- custom_commentstring = function()
-      --   return commentstring.calculate_commentstring() or vim.bo.commentstring
-      -- end,
-    },
-  })
+  comments.setup({})
   --#endregion
 
   --#region UI stuff
@@ -297,6 +290,22 @@ function plugins.configure()
   })
   --#endregion
 
+  --#region Mermaid
+  local mermaid = require("mermaid")
+  mermaid.setup({
+    format = {
+      shift_width = 4, -- Indentation size (spaces)
+    },
+    lint = {
+      enabled = true,   -- Enable diagnostics via mmdc
+      command = "mmdc", -- Path to mermaid-cli executable
+    },
+    preview = {
+      renderer = "mermaid.js", -- "mermaid.js" or "beautiful-mermaid"
+      theme = "default",       -- Theme name (renderer-specific)
+    },
+  })
+  --#endregion
 end
 
 return plugins

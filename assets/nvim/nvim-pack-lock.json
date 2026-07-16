@@ -58,6 +58,10 @@
       "rev": "44d1e90e1f66e077268191e3ee9d2ac97cc18e65",
       "src": "https://github.com/williamboman/mason.nvim"
     },
+    "mermaid.nvim": {
+      "rev": "b6ab941f418809d40102f11ace9da3569c33e52e",
+      "src": "https://github.com/kevalin/mermaid.nvim"
+    },
     "mini.comment": {
       "rev": "597d32ed2c9fbfbf9a250bec7c6b9035f71214f5",
       "src": "https://github.com/echasnovski/mini.comment",

@@ -82,24 +82,30 @@ in
             # Erlang
             ERL_AFLAGS = "-kernel shell_history enabled";
 
-            TERMINAL = "ghostty";
+            TERMINAL = "kitty";
           };
 
           home.shell.enableShellIntegration = true;
 
-          programs.ghostty = {
+          programs.kitty = {
             enable = true;
-            package = if pkgs.stdenv.isDarwin then pkgs.ghostty-bin else pkgs.ghostty;
-            enableZshIntegration = true;
+
+            shellIntegration.enableZshIntegration = true;
+
+            # Match the visual settings from the old Ghostty config.
             settings = {
-              macos-titlebar-style = "hidden";
-              macos-option-as-alt = true;
-              window-padding-x = 12;
-              window-padding-y = 12;
-              working-directory = "home";
-              window-inherit-working-directory = false;
-              window-save-state = "never";
+              window_padding_width = 12;
+              hide_window_decorations = "titlebar-only";
+              macos_option_as_alt = true;
+              initial_working_directory = "$HOME";
+              remember_window_size = false;
             };
+
+            # Ghostty used a larger font size on macOS to compensate for its
+            # default 72 DPI; scale kitty's point size to match.
+            font.size = lib.mkForce (
+              if pkgs.stdenv.isDarwin then 10.0 * 4.0 / 3.0 else config.stylix.fonts.sizes.terminal
+            );
           };
 
           programs.zsh = {

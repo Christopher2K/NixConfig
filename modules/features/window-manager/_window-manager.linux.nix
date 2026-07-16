@@ -41,8 +41,8 @@
         }
         {
           argv = [
-            "ghostty"
-            "--title=_ghostty-scratchpad"
+            "kitty"
+            "--title=_kitty-scratchpad"
           ];
         }
       ];
@@ -148,7 +148,7 @@
 
         {
           matches = [
-            { title = "_ghostty-scratchpad"; }
+            { title = "_kitty-scratchpad"; }
           ];
           open-on-workspace = "scratch";
           open-floating = true;
@@ -177,12 +177,12 @@
 
         # Launch programs
         "Mod+Grave" = {
-          hotkey-overlay.title = "Open ghostty scratch";
-          action.spawn-sh = "nscratch -t _ghostty-scratchpad -s 'ghostty --title=_ghostty-scratchpad' -m";
+          hotkey-overlay.title = "Open kitty scratch";
+          action.spawn-sh = "nscratch -t _kitty-scratchpad -s 'kitty --title=_kitty-scratchpad' -m";
         };
         "Mod+Return" = {
-          hotkey-overlay.title = "Open ghostty";
-          action.spawn = "ghostty";
+          hotkey-overlay.title = "Open kitty";
+          action.spawn = "kitty";
         };
         "Mod+Space" = {
           hotkey-overlay.title = "Start launcher";
