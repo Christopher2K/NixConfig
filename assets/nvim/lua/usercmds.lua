@@ -22,6 +22,13 @@ function usercmd.init()
       fns.update_and_clean_packs({ force = opts.bang })
     end,
     { bang = true, desc = "Update all plugins and remove inactive ones (force with !)" })
+
+  vim.api.nvim_create_user_command('LspStart', fns.lsp_start_current,
+    { desc = "Start LSP for current buffer" })
+  vim.api.nvim_create_user_command('LspStop', fns.lsp_stop_current,
+    { desc = "Stop LSP for current buffer" })
+  vim.api.nvim_create_user_command('LspRestart', fns.lsp_restart_current,
+    { desc = "Restart LSP for current buffer" })
 end
 
 return usercmd

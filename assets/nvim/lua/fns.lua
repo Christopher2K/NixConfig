@@ -59,4 +59,54 @@ function helpers.update_and_clean_packs(opts)
   helpers.clean_packs()
 end
 
+--- Start LSP clients for the current buffer by re-triggering FileType detection.
+function helpers.lsp_start_current()
+  local bufnr = vim.api.nvim_get_current_buf()
+  vim.api.nvim_exec_autocmds("FileType", { buffer = bufnr })
+  vim.defer_fn(function()
+    local clients = vim.lsp.buf_get_clients(bufnr)
+    print(#clients .. " LSP client(s) attached")
+  end, 500)
+end
+
+--- Stop all LSP clients attached to the current buffer.
+function helpers.lsp_stop_current()
+  local clients = vim.lsp.buf_get_clients(0)
+  if #clients == 0 then
+    print("No LSP clients attached to current buffer")
+    return
+  end
+  for _, client in ipairs(clients) do
+    vim.lsp.stop_client(client.id)
+  end
+  print("Stopped " .. #clients .. " LSP client(s)")
+end
+
+--- Restart all LSP clients attached to the current buffer.
+function helpers.lsp_restart_current()
+  local bufnr = vim.api.nvim_get_current_buf()
+  local clients = vim.lsp.buf_get_clients(bufnr)
+  if #clients == 0 then
+    print("No LSP clients attached to current buffer")
+    helpers.lsp_start_current()
+    return
+  end
+
+  local configs = {}
+  for _, client in ipairs(clients) do
+    table.insert(configs, client.config)
+  end
+
+  for _, client in ipairs(clients) do
+    vim.lsp.stop_client(client.id)
+  end
+
+  vim.defer_fn(function()
+    for _, config in ipairs(configs) do
+      vim.lsp.start(config, { bufnr = bufnr })
+    end
+    print("Restarted " .. #configs .. " LSP client(s)")
+  end, 100)
+end
+
 return helpers
