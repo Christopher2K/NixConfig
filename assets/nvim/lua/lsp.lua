@@ -8,6 +8,7 @@ function lsp.init()
     "cssls",
     "docker_compose_language_service",
     "dockerls",
+    "expert",
     "gopls",
     "html",
     "jsonls",
