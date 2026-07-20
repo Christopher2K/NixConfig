@@ -18,7 +18,7 @@ function lsp.init()
     "qmlls",
     "rust_analyzer",
     "svelte",
-    "tailwindcss",
+    -- "tailwindcss",
     "vtsls",
     "yamlls",
   }
