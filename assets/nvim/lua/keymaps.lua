@@ -82,7 +82,6 @@ function keys.init()
 
   -- Plugins stuff
   vim.keymap.set("n", "<leader>e", function() Snacks.explorer.reveal() end, { desc = "Open or focus explorer" })
-  vim.keymap.set("n", "<leader>b", function() Snacks.picker.buffers() end, { desc = "Pick buffer" })
 
   vim.keymap.set("n", "<leader>gg", function() Snacks.lazygit() end, { desc = "Open LazyGit" })
   vim.keymap.set("n", "<leader>i", "<cmd>Sleuth<cr>", { desc = "Fix indentiation" })
@@ -90,6 +89,7 @@ function keys.init()
   -- File picker
   vim.keymap.set("n", "<leader>ff", function() Snacks.picker.files() end, { desc = "Pick file" })
   vim.keymap.set("n", "<leader>fg", function() Snacks.picker.grep() end, { desc = "Pick live grep" })
+  vim.keymap.set("n", "<leader>fb", function() Snacks.picker.buffers() end, { desc = "Pick buffer" })
 
   -- OpenCode Terminal (Snacks)
   if not vim.g.vscode then

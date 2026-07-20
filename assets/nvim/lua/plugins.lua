@@ -149,13 +149,22 @@ function plugins.configure()
   snacks.setup({
     input = { enabled = true },
     terminal = { enabled = true },
-    picker = { enabled = true },
+    picker = {
+      enabled = true,
+      sources = {
+        explorer = {
+          auto_close = false,
+          diagnostics = false,
+          jump = { close = true },
+          layout = { preset = "vertical", preview = false },
+        },
+      },
+    },
     notifier = { enabled = true },
     lazygit = { enabled = true },
     explorer = {
       enabled = true,
       replace_netrw = true,
-      layout = { preset = "default", preview = false },
     },
 
     dashboard = {
