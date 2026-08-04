@@ -1222,11 +1222,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1774268758,
-        "narHash": "sha256-zxpfH1FAsxzVPe3UB1Zc96VUGHE5f74e2XYBxZXmIYU=",
+        "lastModified": 1785788444,
+        "narHash": "sha256-5plE4LvyT/v/GijstWIYbyHcqw89rSAt+ecl0oVTU3Y=",
         "owner": "maxteabag",
         "repo": "sqlit",
-        "rev": "edc847ba659ef54a7e2c452028a66ea4852b637c",
+        "rev": "0f870dc209b821ac217b39acd71c7776d030377b",
         "type": "github"
       },
       "original": {
