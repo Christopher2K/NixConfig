@@ -46,6 +46,11 @@
       "headers": {
         "X-Goog-Api-Key": "{env:STITCH_API_KEY}"
       }
+    },
+    "pencil": {
+      "type": "local",
+      "command": ["/Applications/Pen.app/Contents/Resources/app.asar.unpacked/out/mcp-server-darwin-arm64", "--app", "desktop"],
+      "enabled": true
     }
   },
   "plugin": [
