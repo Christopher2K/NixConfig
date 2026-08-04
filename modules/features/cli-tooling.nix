@@ -11,7 +11,6 @@ in
     { pkgs, config, ... }:
     {
       home.packages = with pkgs; [
-        bat
         fastfetch
         fd
         fzf
@@ -28,6 +27,11 @@ in
         source = helpers.mkAssetsPath "/glow";
         recursive = true;
         force = true;
+      };
+
+      programs.bat = {
+        enable = true;
+        config.theme = "gruvbox-dark";
       };
 
       programs.zoxide = {

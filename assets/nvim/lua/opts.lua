@@ -21,7 +21,7 @@ function opts.init()
   -- vim.opt.winbar = "" -- Disable winbar
   vim.opt.mousescroll = "ver:3,hor:0" -- Disable horizontal mouse scrolling
   vim.opt.winborder = "rounded" -- Make all popup window rounded
-  vim.opt.background = "light" -- Theme
+  vim.opt.background = "dark" -- Theme
   vim.opt.timeout = true -- Used for whichkey
   vim.opt.timeoutlen = 300 -- Used for whichkey
   vim.opt.ignorecase = true -- Case insensitive search

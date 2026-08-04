@@ -222,34 +222,34 @@ in
                               borderless = true;
                               plugin = {
                                 location = "file:${pkgs.zjstatus}/bin/zjstatus.wasm";
-                                format_left = "{mode}#[fg=#7F6E63,bg=#d5c4a1]#[fg=#FFFFFF,bold,bg=#7F6E63] {session} #[fg=#7F6E63,bg=#d5c4a1]{tabs}";
-                                format_right = "#[fg=#a89984,bg=#d5c4a1]#[fg=#ffffff,bold,bg=#a89984] {datetime} #[fg=#a89984,bg=#d5c4a1]";
+                                format_left = "{mode}#[fg=#7c6f64,bg=#3c3836]#[fg=#282828,bold,bg=#7c6f64] {session} #[fg=#7c6f64,bg=#3c3836]{tabs}";
+                                format_right = "#[fg=#928374,bg=#3c3836]#[fg=#282828,bold,bg=#928374] {datetime} #[fg=#928374,bg=#3c3836]";
                                 format_space = "";
 
                                 border_enabled = "false";
                                 border_char = "─";
-                                border_format = "#[fg=#a89984]{char}";
+                                border_format = "#[fg=#928374]{char}";
                                 border_position = "top";
 
                                 hide_frame_for_single_pane = "true";
 
-                                mode_normal = "#[bg=#d5c4a1]";
-                                mode_tmux = "#[fg=#af3a03,bg=#d5c4a1]#[fg=#ebdbb2,bold,bg=#af3a03]  #[fg=#af3a03,bg=#d5c4a1]";
-                                mode_locked = "#[fg=#af3a03,bg=#d5c4a1]#[fg=#ebdbb2,bold,bg=#af3a03]  #[fg=#af3a03,bg=#d5c4a1]";
-                                mode_pane = "#[fg=#458588,bg=#d5c4a1]#[fg=#ebdbb2,bold,bg=#458588] PANE #[fg=#458588,bg=#d5c4a1]";
-                                mode_tab = "#[fg=#d79921,bg=#d5c4a1]#[fg=#3c3836,bold,bg=#d79921] TAB #[fg=#d79921,bg=#d5c4a1]";
-                                mode_resize = "#[fg=#b16286,bg=#d5c4a1]#[fg=#ebdbb2,bold,bg=#b16286] RESIZE #[fg=#b16286,bg=#d5c4a1]";
-                                mode_move = "#[fg=#689d6a,bg=#d5c4a1]#[fg=#ebdbb2,bold,bg=#689d6a] MOVE #[fg=#689d6a,bg=#d5c4a1]";
-                                mode_scroll = "#[fg=#458588,bg=#d5c4a1]#[fg=#ebdbb2,bold,bg=#458588] SCROLL #[fg=#458588,bg=#d5c4a1]";
-                                mode_search = "#[fg=#d65d0e,bg=#d5c4a1]#[fg=#ebdbb2,bold,bg=#d65d0e] SEARCH #[fg=#d65d0e,bg=#d5c4a1]";
-                                mode_enter_search = "#[fg=#d65d0e,bg=#d5c4a1]#[fg=#ebdbb2,bold,bg=#d65d0e] ENTER SEARCH #[fg=#d65d0e,bg=#d5c4a1]";
-                                mode_rename_tab = "#[fg=#d79921,bg=#d5c4a1]#[fg=#3c3836,bold,bg=#d79921] RENAME TAB #[fg=#d79921,bg=#d5c4a1]";
-                                mode_rename_pane = "#[fg=#458588,bg=#d5c4a1]#[fg=#ebdbb2,bold,bg=#458588] RENAME PANE #[fg=#458588,bg=#d5c4a1]";
-                                mode_session = "#[fg=#98971a,bg=#d5c4a1]#[fg=#ebdbb2,bold,bg=#98971a] SESSION #[fg=#98971a,bg=#d5c4a1]";
-                                mode_prompt = "#[fg=#b16286,bg=#d5c4a1]#[fg=#ebdbb2,bold,bg=#b16286] PROMPT #[fg=#b16286,bg=#d5c4a1]";
+                                mode_normal = "#[bg=#3c3836]";
+                                mode_tmux = "#[fg=#fe8019,bg=#3c3836]#[fg=#282828,bold,bg=#fe8019]  #[fg=#fe8019,bg=#3c3836]";
+                                mode_locked = "#[fg=#fe8019,bg=#3c3836]#[fg=#282828,bold,bg=#fe8019]  #[fg=#fe8019,bg=#3c3836]";
+                                mode_pane = "#[fg=#83a598,bg=#3c3836]#[fg=#282828,bold,bg=#83a598] PANE #[fg=#83a598,bg=#3c3836]";
+                                mode_tab = "#[fg=#fabd2f,bg=#3c3836]#[fg=#3c3836,bold,bg=#fabd2f] TAB #[fg=#fabd2f,bg=#3c3836]";
+                                mode_resize = "#[fg=#d3869b,bg=#3c3836]#[fg=#282828,bold,bg=#d3869b] RESIZE #[fg=#d3869b,bg=#3c3836]";
+                                mode_move = "#[fg=#8ec07c,bg=#3c3836]#[fg=#282828,bold,bg=#8ec07c] MOVE #[fg=#8ec07c,bg=#3c3836]";
+                                mode_scroll = "#[fg=#83a598,bg=#3c3836]#[fg=#282828,bold,bg=#83a598] SCROLL #[fg=#83a598,bg=#3c3836]";
+                                mode_search = "#[fg=#fe8019,bg=#3c3836]#[fg=#282828,bold,bg=#fe8019] SEARCH #[fg=#fe8019,bg=#3c3836]";
+                                mode_enter_search = "#[fg=#fe8019,bg=#3c3836]#[fg=#282828,bold,bg=#fe8019] ENTER SEARCH #[fg=#fe8019,bg=#3c3836]";
+                                mode_rename_tab = "#[fg=#fabd2f,bg=#3c3836]#[fg=#3c3836,bold,bg=#fabd2f] RENAME TAB #[fg=#fabd2f,bg=#3c3836]";
+                                mode_rename_pane = "#[fg=#83a598,bg=#3c3836]#[fg=#282828,bold,bg=#83a598] RENAME PANE #[fg=#83a598,bg=#3c3836]";
+                                mode_session = "#[fg=#b8bb26,bg=#3c3836]#[fg=#282828,bold,bg=#b8bb26] SESSION #[fg=#b8bb26,bg=#3c3836]";
+                                mode_prompt = "#[fg=#d3869b,bg=#3c3836]#[fg=#282828,bold,bg=#d3869b] PROMPT #[fg=#d3869b,bg=#3c3836]";
 
-                                tab_normal = "#[fg=#a89984,bg=#d5c4a1]#[fg=#ebdbb4,bg=#a89984] {index} {name} #[fg=#a89984,bg=#d5c4a1]";
-                                tab_active = "#[fg=#af3a03,bg=#d5c4a1]#[fg=#ebdbb2,bold,bg=#af3a03] {index} {name} #[fg=#af3a03,bg=#d5c4a1]";
+                                tab_normal = "#[fg=#928374,bg=#3c3836]#[fg=#282828,bg=#928374] {index} {name} #[fg=#928374,bg=#3c3836]";
+                                tab_active = "#[fg=#fe8019,bg=#3c3836]#[fg=#282828,bold,bg=#fe8019] {index} {name} #[fg=#fe8019,bg=#3c3836]";
                                 tab_separator = "";
 
                                 datetime = "{format}";
@@ -268,7 +268,7 @@ in
             };
 
             settings = {
-              theme = "gruvbox-light";
+              theme = "gruvbox-dark";
               simplified_ui = true;
               default_shell = "zsh";
               copy_on_select = true;

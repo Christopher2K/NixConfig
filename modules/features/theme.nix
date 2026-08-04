@@ -39,11 +39,12 @@ in
         stylix = {
           enable = true;
           autoEnable = false;
-          base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-material-light-soft.yaml";
+          polarity = "dark";
+          base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-material-dark-medium.yaml";
 
           cursor = {
             size = 32;
-            name = "phinger-cursors-light";
+            name = "phinger-cursors";
             package = pkgs.phinger-cursors;
           };
           fonts = {
