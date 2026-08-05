@@ -52,7 +52,8 @@ function plugins.init()
     "folke/which-key.nvim",                                                -- Bindings helpers
     "OXY2DEV/markview.nvim",                                               -- Markdown viewers
     "lervag/vimtex",
-    "kevalin/mermaid.nvim"                                                 -- Mermaid diagrams
+    "kevalin/mermaid.nvim",                                                -- Mermaid diagrams
+    "windwp/nvim-ts-autotag"                                               -- TS AutoTag
   })
 end
 
@@ -138,6 +139,15 @@ function plugins.configure()
     "yaml",
     "zig",
   })
+  local autotag = require("nvim-ts-autotag")
+  autotag.setup({
+    opts = {
+      enable_close = true,        -- Auto close tags
+      enable_rename = true,       -- Auto rename pairs of tags
+      enable_close_on_slash = false -- Auto close on trailing </
+    },
+  })
+
   local comments = require("mini.comment")
   comments.setup({})
   --#endregion
