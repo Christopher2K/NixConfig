@@ -14,10 +14,11 @@ in
 
       xdg.portal = {
         enable = true;
-        extraPortals = [ pkgs.xdg-desktop-portal-gnome ];
-        # Explicitly map all interfaces to the GNOME backend so niri sessions
-        # (which don't advertise a desktop environment) resolve unambiguously.
-        config.common.default = "*";
+        config.common.default = [ "gnome" ];
+        extraPortals = with pkgs; [
+          xdg-desktop-portal-gtk
+          xdg-desktop-portal-gnome
+        ];
       };
 
       services.displayManager.dms-greeter = {
