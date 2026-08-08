@@ -56,16 +56,16 @@ in
         stdenv.cc.cc
         unixodbc
         util-linux
-        xorg.libX11
-        xorg.libXcomposite
-        xorg.libXdamage
-        xorg.libXext
-        xorg.libXfixes
-        xorg.libXi
-        xorg.libXrandr
-        xorg.libXrender
-        xorg.libXtst
-        xorg.libxcb
+        libx11
+        libxcomposite
+        libxdamage
+        libxext
+        libxfixes
+        libxi
+        libxrandr
+        libxrender
+        libxtst
+        libxcb
         xz
         zlib
         zstd
