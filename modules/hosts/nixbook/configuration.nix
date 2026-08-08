@@ -62,6 +62,7 @@ in
         libgcc
         gcc
         gnumake
+        wine
       ];
 
       programs.appimage = {
