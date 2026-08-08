@@ -11,14 +11,37 @@ in
   };
 
   flake.modules.homeManager.desktop-shell =
-    { pkgs, config, ... }:
+    {
+      pkgs,
+      lib,
+      config,
+      ...
+    }:
     let
       colors = config.lib.stylix.colors.withHashtag;
+
+      darken =
+        hex: amount:
+        let
+          h = builtins.substring 1 6 hex;
+          channel = i: (builtins.fromTOML ("v = 0x" + builtins.substring (i * 2) 2 h)).v;
+          digits = "0123456789abcdef";
+          toHex2 = n: builtins.substring (n / 16) 1 digits + builtins.substring (lib.mod n 16) 1 digits;
+          scale = v: builtins.floor (v * (1 - amount));
+        in
+        "#"
+        + lib.concatMapStrings (v: toHex2 (scale v)) [
+          (channel 0)
+          (channel 1)
+          (channel 2)
+        ];
+
       mkTheme = {
         name = "Stylix";
         primary = colors.base0D;
         primaryText = colors.base00;
-        primaryContainer = colors.base0C;
+        # Dark shade of the accent so `primary` text stays readable on it
+        primaryContainer = darken colors.base0D 0.6;
         secondary = colors.base0E;
         surface = colors.base01;
         surfaceText = colors.base05;
