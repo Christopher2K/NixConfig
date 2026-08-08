@@ -42,6 +42,7 @@ in
             hm.launcher
             hm.monitor-config
             hm.notes
+            hm.pen
             hm.security
             hm.sound
             hm.streaming
