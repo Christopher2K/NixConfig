@@ -53,14 +53,5 @@
       "enabled": true
     }
   },
-  "plugin": [
-  ],
-  "provider": {
-    "anthropic": {
-      "options": {}
-    },
-    "openrouter": {
-      "models": {}
-    }
-  }
+  "plugin": ["opencode-claude-auth@latest"]
 }
