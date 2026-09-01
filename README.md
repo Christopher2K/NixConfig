@@ -157,3 +157,40 @@ For adding a face for howdy, run:
 ```bash
 sudo howdy add
 ```
+
+### Ankama Launcher
+
+The launcher (`pkgs.ankama-launcher`) is pinned in nixpkgs to a Wayback Machine snapshot of the
+official AppImage. The overlay in `modules/features/gaming.nix` additionally disables its built-in
+auto-updater (it crashes on NixOS — it only works when running as a real AppImage), so launcher
+updates always come from the package, never from the app itself.
+
+To update to a newer launcher version:
+
+1. Check the latest upstream version:
+   ```bash
+   curl -s https://launcher.cdn.ankama.com/installers/production/latest-linux.yml | head -1
+   ```
+2. Update the nixpkgs pin — the package is usually bumped within days of a release:
+   ```bash
+   nix flake update nixpkgs
+   ```
+3. If nixpkgs hasn't caught up yet, bump it manually in `modules/features/gaming.nix`:
+   - Create a snapshot of
+     `https://launcher.cdn.ankama.com/installers/production/Ankama%20Launcher-Setup-x86_64.AppImage`
+     on [web.archive.org](https://web.archive.org/save) — don't use the CDN URL directly, it is not
+     versioned and breaks on every upstream release.
+   - In the overlay, replace `inherit (prev.ankama-launcher) pname version src;` with an explicit
+     `pname`, `version` and `src = fetchurl { url = "<snapshot-url>"; hash = "<hash>"; };`
+   - Get the hash with:
+     ```bash
+     nix store prefetch-file --hash-type sha256 "<snapshot-url>"
+     ```
+4. Apply the update:
+   ```bash
+   sudo nixos-rebuild switch --flake .#nixbook
+   ```
+
+Note: if Ankama ever changes the auto-updater config key, the build fails loudly with
+`updater feed URL not found in app.asar` — adjust the `postExtract` patch in `gaming.nix`
+accordingly (the replacement string must stay the exact same byte length).
