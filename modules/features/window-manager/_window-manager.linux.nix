@@ -104,11 +104,11 @@
       workspaces = {
         "01-main" = {
           name = "main";
-          open-on-output = "HDMI-A-1";
+          open-on-output = "eDP-1";
         };
         "02-secondary" = {
           name = "secondary";
-          open-on-output = "HDMI-A-1";
+          open-on-output = "eDP-1";
         };
         "03-stream" = {
           name = "stream";
@@ -120,7 +120,7 @@
         };
         "05-scratch" = {
           name = "scratch";
-          open-on-output = "HDMI-A-1";
+          open-on-output = "eDP-1";
         };
       };
 

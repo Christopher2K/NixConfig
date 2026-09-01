@@ -13,7 +13,7 @@ in
         # (X-AppImage-Version in the extracted pen.desktop) on upstream releases.
         src = pkgs.fetchurl {
           url = "https://www.pen.dev/download/Pen-linux-x86_64.AppImage";
-          hash = "sha256-XA4W9/5DcRfGMNZ95EQFE/F7znD33olh6y+EAy2fm+c=";
+          hash = "sha256-wkiecbt6WeaUXN/1ZK3X07wGpZTEkQ1V6iBaRqDoGvo=";
         };
         appimageContents = pkgs.appimageTools.extract { inherit pname version src; };
       in

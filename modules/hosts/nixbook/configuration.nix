@@ -18,7 +18,9 @@ in
       networking.wireless.enable = true;
       networking.networkmanager.enable = true;
 
-      time.timeZone = "America/Toronto";
+      time.timeZone = null;
+      services.automatic-timezoned.enable = true;
+      services.geoclue2.enable = true;
 
       i18n.defaultLocale = "en_CA.UTF-8";
 
