@@ -1,7 +1,11 @@
 {
+  config,
   inputs,
   ...
 }:
+let
+  helpers = config.flake.helpers;
+in
 {
   flake.modules.darwin.communication = {
     homebrew.casks = [
@@ -13,11 +17,19 @@
     ];
   };
 
-  flake.modules.homeManager.communication =
-    { pkgs, ... }:
-    {
+  flake.modules.homeManager.communication = helpers.mkHybrid {
+    common =
+      { pkgs, ... }:
+      {
+        home.packages = with pkgs; [
+          vesktop
+        ];
+      };
+
+    linux = { pkgs, ... }: {
       home.packages = with pkgs; [
-        vesktop
+        beeper
       ];
     };
+  };
 }
