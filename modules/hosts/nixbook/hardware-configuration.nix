@@ -47,6 +47,11 @@
         ];
       };
 
+      fileSystems."/data" = {
+        device = "/dev/disk/by-uuid/695191cc-9e34-418c-b3bc-0c793b38fb40";
+        fsType = "ext4";
+      };
+
       swapDevices = [ ];
 
       hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

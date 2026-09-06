@@ -24,6 +24,7 @@
         nautilus
         file-roller
         gnome-calculator
+        gnome-disk-utility
         gnome-text-editor
         loupe
         evince
