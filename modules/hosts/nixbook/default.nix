@@ -8,6 +8,7 @@ in
   flake.nixosConfigurations.nixbook = inputs.nixpkgs.lib.nixosSystem {
     modules = [
       # system level configuration
+      nixos.android
       nixos.coding
       nixos.gaming
       nixos.gnome-apps
@@ -31,6 +32,7 @@ in
           imports = [
             hm.christopher
             hm.ai
+            hm.android
             hm.browser
             hm.cli-tooling
             hm.coding

@@ -38,6 +38,17 @@ in
         };
       };
 
+      linux = {
+        home.sessionVariables = {
+          # Android
+          ANDROID_ROOT = "$HOME/Android";
+          ANDROID_SDK_ROOT = "$HOME/Android/Sdk";
+          ANDROID_PLATFORM_TOOLS = "$HOME/Android/Sdk/platform-tools";
+          ANDROID_HOME = "$HOME/Android/Sdk";
+          PATH = "$PATH:$ANDROID_PLATFORM_TOOLS:$HOME/Android/Sdk/emulator";
+        };
+      };
+
       common =
         {
           pkgs,
