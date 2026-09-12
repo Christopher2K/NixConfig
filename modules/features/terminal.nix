@@ -173,9 +173,15 @@ in
                     source "$CACHE_FILE"
                   fi
                 '';
+
+                # devenv auto-activation: https://devenv.sh/auto-activation/#setup
+                zshConfigDevenvHook = ''
+                  eval "$(devenv hook zsh)"
+                '';
               in
               lib.mkMerge [
                 zshConfigEarlyInit
+                zshConfigDevenvHook
               ];
           };
 
