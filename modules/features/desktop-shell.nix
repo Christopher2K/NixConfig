@@ -20,6 +20,14 @@ in
     let
       colors = config.lib.stylix.colors.withHashtag;
 
+      # DMS monitor identifiers ("make model serial" as reported by niri, with
+      # serial falling back to "Unknown"). Note the double space in the laptop
+      # panel id: niri reports its model with a trailing space.
+      monitorIds = {
+        builtin-laptop = "Samsung Display Corp. ATNA40CU05-0  Unknown";
+        iiyama-hdmi = "Iiyama North America PL2770H 0x00000BB1";
+      };
+
       darken =
         hex: amount:
         let
@@ -98,6 +106,11 @@ in
           fontFamily = config.stylix.fonts.monospace.name;
           nightModeEnabled = false;
           widgetOutlineEnabled = true;
+          # Let DMS auto-apply the matching display profile from monitors.json
+          displayProfileAutoSelect = true;
+          # Identify monitors by make/model/serial instead of connector name,
+          # so profiles match a specific monitor regardless of the port used
+          displayNameMode = "model";
         };
 
         session = {
@@ -108,5 +121,66 @@ in
           disabled = true;
         };
       };
+
+      # DMS display profiles (the pinned DMS home module has no option for this
+      # file yet). DMS matches the connected outputs against these profiles and
+      # regenerates ~/.config/niri/dms/outputs.kdl from the active one.
+      # NOTE: profiles must stay UNNAMED — DMS's auto-select skips named
+      # profiles (named ones can only be activated manually in the GUI).
+      xdg.configFile."DankMaterialShell/monitors.json".source =
+        (pkgs.formats.json { }).generate "dms-monitors.json"
+          {
+            version = 1;
+            configurations = [
+              {
+                id = "docked";
+                name = "";
+                outputs = {
+                  "${monitorIds.iiyama-hdmi}" = {
+                    mode = "1920x1080@60.000";
+                    position = {
+                      x = 0;
+                      y = 0;
+                    };
+                    scale = 1.0;
+                    transform = "Normal";
+                    vrr = false;
+                    disabled = false;
+                    niri = { };
+                  };
+                  "${monitorIds.builtin-laptop}" = {
+                    mode = "2880x1800@120.000";
+                    position = {
+                      x = 0;
+                      y = 1080;
+                    };
+                    scale = 1.5;
+                    transform = "Normal";
+                    vrr = false;
+                    disabled = false;
+                    niri = { };
+                  };
+                };
+              }
+              {
+                id = "undocked";
+                name = "";
+                outputs = {
+                  "${monitorIds.builtin-laptop}" = {
+                    mode = "2880x1800@120.000";
+                    position = {
+                      x = 0;
+                      y = 0;
+                    };
+                    scale = 1.5;
+                    transform = "Normal";
+                    vrr = false;
+                    disabled = false;
+                    niri = { };
+                  };
+                };
+              }
+            ];
+          };
     };
 }

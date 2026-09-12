@@ -56,63 +56,6 @@ in
           get-output-by-description
           niri-reorder-workspaces
         ];
-
-        services.kanshi = {
-          enable = true;
-          systemdTarget = "graphical-session.target";
-          settings = [
-            {
-              profile.name = "undocked";
-              profile.exec = [
-                base-command
-                "${niri-reorder-workspaces}/bin/niri-reorder-workspaces"
-              ];
-              profile.outputs = [
-                {
-                  criteria = monitors.builtin-laptop;
-                  scale = 1.50;
-                  mode = "2880x1800@120";
-                }
-              ];
-            }
-            {
-              profile.name = "docked";
-              profile.exec = base-command;
-              profile.outputs = [
-                {
-                  criteria = monitors.builtin-laptop;
-                  scale = 1.5;
-                  mode = "2880x1800@120";
-                  position = "-1920,0";
-                }
-                {
-                  criteria = monitors.lg-home;
-                  scale = 1.0;
-                  mode = "2560x1440@120";
-                  position = "0,0";
-                }
-              ];
-            }
-            {
-              profile.name = "capture";
-              profile.exec = mirror-command;
-              profile.outputs = [
-                {
-                  criteria = monitors.builtin-laptop;
-                  scale = 1.0;
-                  mode = "1600x1200@120";
-                  position = "0,0";
-                }
-                {
-                  criteria = monitors.capture-card;
-                  scale = 1.0;
-                  mode = "2560x1440@60";
-                  position = "10000,10000";
-                }
-              ];
-            }
-          ];
-        };
       };
   };
 }
