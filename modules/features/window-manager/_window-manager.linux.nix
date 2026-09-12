@@ -168,6 +168,13 @@
             relative-to = "bottom-right";
           };
         }
+
+        {
+          matches = [
+            { app-id = "Emulator"; }
+          ];
+          open-floating = true;
+        }
       ];
 
       # Keybindings
