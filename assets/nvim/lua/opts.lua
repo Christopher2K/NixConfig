@@ -3,6 +3,7 @@ local opts = {}
 function opts.init()
   vim.opt.autoread = true -- Read a file when it was changed outside of nvim
   vim.opt.autowrite = true -- Automatically write file when it was changed
+  vim.opt.swapfile = false -- No swapfile: its fsyncs stall the UI when disk is congested
   vim.opt.encoding = "UTF-8" -- Default encoding
   vim.opt.number = true -- Number in front of each line
   vim.opt.relativenumber = true -- Relative number in front of each line
