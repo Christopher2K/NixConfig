@@ -73,11 +73,11 @@ in
             force = true;
           };
 
-          home.file."${helpers.mkConfigPath config "/herdr"}" = {
-            source = helpers.mkAssetsPath "/herdr";
-            recursive = true;
-            force = true;
-          };
+          # Out-of-store symlink so herdr can write settings (e.g. onboarding)
+          # back to the config file at runtime without hitting the read-only
+          # Nix store.
+          home.file."${helpers.mkConfigPath config "/herdr/config.toml"}".source =
+            config.lib.file.mkOutOfStoreSymlink (helpers.mkAssetsStringPath config "/herdr/config.toml");
 
           home.sessionVariables = {
             LC_ALL = "en_US.UTF-8";
