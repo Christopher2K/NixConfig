@@ -1,3 +1,4 @@
+onboarding = false
 # herdr configuration
 # Place this file at ~/.config/herdr/config.toml
 
@@ -9,7 +10,7 @@
 # Built-in themes: catppuccin, terminal, tokyo-night, dracula, nord,
 #                  gruvbox, one-dark, solarized, kanagawa, rose-pine,
 #                  vesper
-name = "gruvbox-dark"
+name = "vesper"
 
 # Follow host terminal light/dark appearance and switch Herdr UI themes.
 # Existing manual behavior is unchanged unless this is true.
@@ -25,6 +26,7 @@ name = "gruvbox-dark"
 # red = "#ff6188"
 # green = "#a6e3a1"
 
+auto_switch = false
 [terminal]
 # Executable used for new interactive panes.
 # Empty means $SHELL, then /bin/sh.
@@ -200,6 +202,7 @@ name = "gruvbox-dark"
 # accent = "cyan"
 
 # Background notification popup delivery
+status_indicators = "dots"
 [ui.toast]
 # off = disable pop-up notifications
 # herdr = show in-app toasts
@@ -208,6 +211,7 @@ name = "gruvbox-dark"
 # delivery = "off"
 # delay_seconds = 1
 
+delivery = "system"
 [ui.toast.herdr]
 # position = "bottom-right"
 
@@ -228,6 +232,7 @@ name = "gruvbox-dark"
 # [ui.sound.agents]
 # droid = "off"
 
+enabled = true
 [session]
 # Resume supported AI-agent panes into their native conversation sessions after
 # a Herdr server restart. Requires official integrations that report session refs.
@@ -276,4 +281,3 @@ pane_history = false
 # Maximum scrollback buffer size in bytes retained per pane terminal.
 # Matches Ghostty's default scrollback-limit behavior.
 # scrollback_limit_bytes = 10000000
-
