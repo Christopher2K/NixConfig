@@ -11,7 +11,7 @@ in
 
   flake.modules.darwin.launcher = {
     homebrew.casks = [
-      "raycast"
+      "abue-ammar/tinycast/tinycast"
     ];
   };
 

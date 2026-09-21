@@ -22,6 +22,11 @@
       flake = false;
     };
 
+    homebrew-tinycast-tap = {
+      url = "github:abue-ammar/homebrew-tinycast";
+      flake = false;
+    };
+
     flake-parts.url = "github:hercules-ci/flake-parts";
 
     import-tree.url = "github:vic/import-tree";

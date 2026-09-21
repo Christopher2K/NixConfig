@@ -627,6 +627,22 @@
         "type": "github"
       }
     },
+    "homebrew-tinycast-tap": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1789505887,
+        "narHash": "sha256-eoxILzYPNj6wsJowiju0V2/CSYZ4xsuzpzjmsYRLvLk=",
+        "owner": "abue-ammar",
+        "repo": "homebrew-tinycast",
+        "rev": "10ff254a225fd637b94d230e6726291e2629b5e5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "abue-ammar",
+        "repo": "homebrew-tinycast",
+        "type": "github"
+      }
+    },
     "import-tree": {
       "locked": {
         "lastModified": 1788210572,
@@ -1198,6 +1214,7 @@
         "homebrew-barutsrb-tap": "homebrew-barutsrb-tap",
         "homebrew-cask": "homebrew-cask",
         "homebrew-core": "homebrew-core",
+        "homebrew-tinycast-tap": "homebrew-tinycast-tap",
         "import-tree": "import-tree",
         "matugen": "matugen",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
