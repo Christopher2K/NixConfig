@@ -37,6 +37,16 @@
         "npx",
         "@mobilenext/mobile-mcp@latest"
       ],
+      "enabled": false 
+    },
+    "agent-device": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y", 
+        "agent-device@latest",
+        "mcp"
+      ],
       "enabled": true
     },
     "notion": {
