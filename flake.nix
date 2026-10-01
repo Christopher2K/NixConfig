@@ -48,7 +48,7 @@
 
     opencode.url = "github:sst/opencode/v1.18.30";
 
-    helium.url = "github:schembriaiden/helium-browser-nix-flake";
+    helium.url = "github:amaanq/helium-flake";
     helium.inputs.nixpkgs.follows = "nixpkgs";
 
     vicinae.url = "github:vicinaehq/vicinae";
